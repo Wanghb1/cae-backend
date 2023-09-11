@@ -30,4 +30,8 @@ mybatis-plus:
   # mapper路径位置
   mapper-locations: classpath:mapper/*.xml
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
