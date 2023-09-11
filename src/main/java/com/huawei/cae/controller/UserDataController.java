@@ -13,6 +13,16 @@ public class UserDataController {
     @Autowired
     private UserDataService dataService;
 
+    @Autowired
+    private MeterRegistry registry;
+
+    private Counter visitCounter;
+
+    @PostConstruct
+    private void init() {
+        visitCounter = registry.counter("click_operated_total", "click_operated_total","");
+    }
+
     @CrossOrigin
     @RequestMapping(value = "/query", method = RequestMethod.GET)
     public UserDataVo getData(@RequestParam(value = "user_name") String userName) {
@@ -38,6 +48,8 @@ public class UserDataController {
     @CrossOrigin
     @RequestMapping(value = "/consume_cpu", method = RequestMethod.POST)
     public Integer clientTest() {
+
+        visitCounter.increment();
         // 消耗CPU 的计算
         for (int i = 0; i <= 10; i++) {
             MyThread thread = new MyThread();
