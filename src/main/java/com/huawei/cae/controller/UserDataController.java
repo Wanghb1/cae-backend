@@ -8,6 +8,7 @@ import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("/v1")
